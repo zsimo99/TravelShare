@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navLink{
+  @apply p-2 transition w-full block hover:bg-primary-300 md:rounded-md cursor-pointer
+}
+
+.pourple_gradient{
+  @apply bg-gradient-to-r from-tertiary-300 to-tertiary-100 bg-clip-text text-transparent
+}
+
+@keyframes inputErr{
+  0%{
+    transform: rotate(0deg);
+  }
+  20%{
+    transform: rotate(1deg);
+  }
+  40%{
+    transform: rotate(-1deg);
+  }
+  60%{
+    transform: rotate(-1deg);
+  }
+  100%{transform: none;}
+}
+.inputStartAnimation{
+  animation: .2s linear inputErr;
+}
