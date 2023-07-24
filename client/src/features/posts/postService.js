@@ -11,6 +11,7 @@ const getAllPosts = async (page) => {
 }
 const addOrRemoveLike = async (postId, userId) => {
     const res = await axios.patch(`${url}/${postId}`, { type: "like", userId })
+    console.log(res.data)
     return res.data
 }
 
