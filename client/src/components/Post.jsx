@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa"
 import { AiOutlineLike, AiFillHeart } from "react-icons/ai"
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux"
+import { addOrRemoveLike } from '../features/posts/postSlice'
 
 
-const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, content, tags, likes, comments }) => {
-    const navigate = useNavigate()
-    const [stars, setStars] = useState({
-        FaStar: 0, FaStarHalfAlt: 0, FaRegStar: 0,
-    })
+const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, content, tags, likes, comments, setPosts }) => {
+    const dispatch = useDispatch()
+    const { user } = useSelector((state) => state.auth);
+    const [stars, setStars] = useState({ FaStar: 0, FaStarHalfAlt: 0, FaRegStar: 0 })
     const [Likes, setLikes] = useState(0)
+
     const getRating = (rating) => {
         let value = rating
         let FaStar = 0
@@ -22,6 +24,10 @@ const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, conte
         }
         if (value === 1) FaStarHalfAlt++
         setStars({ FaStar, FaStarHalfAlt, FaRegStar })
+    }
+
+    const handleClick = () => {
+        dispatch(addOrRemoveLike(_id))
     }
 
     useEffect(() => {
@@ -59,10 +65,10 @@ const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, conte
                                     <FaRegStar key={index} />
                                 ))}
                             </div>
-                            <div className='text-primary-300 text-[40px] mt-4 flex justify-end cursor-pointer items-center hover:text-[red] '>
+                            <div onClick={handleClick} className={`text-[40px] mt-4 flex justify-end cursor-pointer items-center hover:text-[red] ${likes.some(whoLike => whoLike === user.data.userInfo.id) ? "text-[red]" : "text-primary-300"}`}>
                                 <div className='relative'>
                                     <span className='mr-1 text-white font-bold text-[10px] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'>{Likes}</span>
-                                    <div className=' rounded-full '><AiFillHeart /></div>
+                                    <div><AiFillHeart /></div>
                                 </div>
                             </div>
                         </div>

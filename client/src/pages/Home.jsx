@@ -16,13 +16,17 @@ const Home = () => {
     if (isMountedRef.current) {
       isMountedRef.current = false
       dispatch(getAllPosts())
-    } else {
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!isMountedRef.current) {
       if (isError) console.log(message);
       if (isSuccess) setPosts(posts);
       if (isLoading) { setLoading(true) } else setLoading(false)
       dispatch(reset())
     }
-  }, [dispatch, isError, isSuccess, posts, message, isLoading]);
+  }, [dispatch, isError, isSuccess, posts, message, isLoading])
 
 
   if (isLoading) console.log("loading")

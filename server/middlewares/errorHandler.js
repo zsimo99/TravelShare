@@ -6,8 +6,7 @@ export const errorHandler = (err, req, res, next) => {
   if (err.name === "ValidationError") {
     error.message = `${Object.values(err.errors).map(
       (value) =>
-        `${value.path}:${
-          value.kind === "user defined" ? "notValide" : value.kind
+        `${value.path}:${value.kind === "user defined" ? "notValide" : value.kind
         }`
     )}`;
     error.status = 400;
@@ -16,6 +15,10 @@ export const errorHandler = (err, req, res, next) => {
     error.message = "email:duplicate";
     error.status = 400;
   }
-  //   res.json(err);
+  if (err.name === "CastError") {
+    error.message = "id:notValid";
+    error.status = 500;
+  }
+  // res.json(err);
   res.status(error.status).json({ message: error.message });
 };

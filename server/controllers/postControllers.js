@@ -16,3 +16,19 @@ export const createPost = asyncHandler(async (req, res) => {
     })
     res.json(post)
 })
+export const updatePost = asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const { userId, type } = req.body
+    if (type === "like") {
+        const post = await Post.findById(id).populate("postOwner", ["displayName", "email"])
+        if (!post) throw new Error("post not found")
+        const alreadyLikedIndex = post.likes.findIndex(likeUserId => likeUserId.equals(userId))
+        if (alreadyLikedIndex !== -1) {
+            post.likes.splice(alreadyLikedIndex, 1);
+        } else {
+            post.likes.push(userId);
+        }
+        await post.save();
+        return res.status(201).json(post)
+    }
+})
