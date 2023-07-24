@@ -1,7 +1,8 @@
 import axios from "axios"
 
-// const url = "http://localhost:3000/api/post/";
-const url = "https://webshare-api-v2.onrender.com/api/post/";
+
+const url = `${import.meta.env.VITE_URL}/api/post`;
+
 
 
 const getAllPosts = async (page) => {

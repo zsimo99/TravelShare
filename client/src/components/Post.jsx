@@ -29,18 +29,10 @@ const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, conte
         setLikes(likes.length)
     }, [likes, rating])
     return (
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <div className='basis-[400px] flex-1 shadow-2xl bg-gray-200 max-h-[250px] rounded-lg overflow-hidden' >
-=======
-        <div className='basis-[400px] flex-1 shadow-2xl bg-gray-200 max-h-[280px] rounded-lg overflow-hidden' >
->>>>>>> origin/main
-=======
-        <div className='basis-[400px] flex-1 shadow-2xl bg-gray-200 h-[250px] rounded-lg overflow-hidden' >
->>>>>>> 44a5424 (cssFIxes)
+        <div className='basis-[400px] flex-1 shadow-2xl bg-gray-200 h-[300px] rounded-lg overflow-hidden' >
             <div className="flex flex-1 h-full">
                 <div className='basis-1/3 sm:basis-1/2'>
-                    <img className='max-h-full object-cover ' src="https://cdn.hswstatic.com/gif/s1/mq_travel/gettyimages-1089728672-scaled.jpg" alt="" />
+                    <img className='h-full object-cover ' src="https://cdn.hswstatic.com/gif/s1/mq_travel/gettyimages-1089728672-scaled.jpg" alt="" />
                 </div>
                 <div className='flex-1 p-4'>
                     <h1 className='text-xl sm:text-2xl font-mono tracking-[-2px]'>{title}</h1>

@@ -22,7 +22,7 @@ const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
     console.log("mongodb COnnected");
-    app.listen(port, () => console.log("app is running in port 3000"));
+    app.listen(port, () => console.log("app is running in port " + port));
   } catch (error) {
     console.log(error);
   }

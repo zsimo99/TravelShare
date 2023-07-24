@@ -1,7 +1,8 @@
 import axios from "axios";
 
-// const url = "http://localhost:3000/api/auth";
-const url = "https://webshare-api-v2.onrender.com/api/auth";
+
+const url = `${import.meta.env.VITE_URL}/api/auth`;
+
 
 const loginUser = async (formData) => {
   const res = await axios.post(`${url}/login`, formData);
