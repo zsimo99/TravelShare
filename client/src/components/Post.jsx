@@ -67,7 +67,7 @@ const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, conte
                                     <FaRegStar key={index} />
                                 ))}
                             </div>
-                            <div onClick={handleClick} className={`text-[40px] mt-4 flex justify-end cursor-pointer items-center hover:text-[red] ${likes.some(whoLike => whoLike === user.data.userInfo.id) ? "text-[red]" : "text-primary-300"}`}>
+                            <div onClick={handleClick} className={`text-[40px] mt-4 flex justify-end cursor-pointer items-center hover:text-[red] ${likes.some(whoLike => whoLike === user?.data.userInfo.id) ? "text-[red]" : "text-primary-300"}`}>
                                 <div className='relative'>
                                     <span className='mr-1 text-white font-bold text-[10px] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'>{Likes}</span>
                                     <div><AiFillHeart /></div>
