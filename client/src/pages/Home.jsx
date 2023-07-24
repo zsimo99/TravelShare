@@ -28,6 +28,11 @@ const Home = () => {
     }
   }, [dispatch, isError, isSuccess, posts, message, isLoading])
 
+  useEffect(() => {
+    if (!isMountedRef.current) {
+      return () => dispatch(reset())
+    }
+  }, [dispatch])
 
   if (isLoading) console.log("loading")
   return (
