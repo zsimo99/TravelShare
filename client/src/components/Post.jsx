@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { addOrRemoveLike } from '../features/posts/postSlice'
 
 
-const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, content, tags, likes, comments, setPosts }) => {
+const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, content, tags, likes, comments, setPosts, isLoading }) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { user } = useSelector((state) => state.auth);
     const [stars, setStars] = useState({ FaStar: 0, FaStarHalfAlt: 0, FaRegStar: 0 })
     const [Likes, setLikes] = useState(0)
@@ -27,7 +28,8 @@ const Post = ({ _id, postOwner: { displayName }, placeName, title, rating, conte
     }
 
     const handleClick = () => {
-        dispatch(addOrRemoveLike(_id))
+        if (!user) return navigate("/login")
+        if (!isLoading) dispatch(addOrRemoveLike(_id))
     }
 
     useEffect(() => {

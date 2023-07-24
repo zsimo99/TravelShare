@@ -35,7 +35,7 @@ const Home = () => {
       <Search />
       <div className="flex flex-wrap gap-10 mt-10">
         {loading ? <h1 className="text-3xl w-full text-center font-bold text-primary-100">Loading...</h1> : (
-          Posts?.map((post, id) => <Post key={id} {...post} setPosts={setPosts} />)
+          Posts?.map((post, id) => <Post key={id} {...post} setPosts={setPosts} isLoading={isLoading} />)
         )}
       </div>
     </div>
