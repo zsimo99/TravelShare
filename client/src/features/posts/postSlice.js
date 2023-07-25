@@ -5,6 +5,7 @@ const initialState = {
     posts: null,
     post: null,
     isLoading: false,
+    LikeLoading: false,
     isSuccess: false,
     isError: false,
     message: "",
@@ -69,16 +70,15 @@ export const postSlice = createSlice({
                 state.message = actions.payload
             })
             .addCase(addOrRemoveLike.pending, state => {
-                state.isLoading = true
+                state.LikeLoading = true
             })
             .addCase(addOrRemoveLike.fulfilled, (state, actions) => {
-                state.isLoading = false
+                state.LikeLoading = true
                 state.isSuccess = true
-                // console.log(actions.payload)
                 state.posts = state.posts.map(obj => obj._id === actions.payload._id ? actions.payload : obj)
             })
             .addCase(addOrRemoveLike.rejected, (state, actions) => {
-                state.isLoading = false
+                state.LikeLoading = true
                 state.isError = true
                 state.message = actions.payload
             })

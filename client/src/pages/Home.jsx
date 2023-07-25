@@ -5,7 +5,7 @@ import { getAllPosts, reset } from "../features/posts/postSlice";
 
 
 const Home = () => {
-  const { posts, isLoading, isSuccess, isError, message } = useSelector(state => state.post)
+  const { posts, isLoading, isSuccess, isError, message, LikeLoading } = useSelector(state => state.post)
   const [Posts, setPosts] = useState(null)
   const [loading, setLoading] = useState(true)
   const isMountedRef = useRef(true)
@@ -39,7 +39,7 @@ const Home = () => {
       <Search />
       <div className="flex flex-wrap gap-10 mt-10">
         {loading ? <h1 className="text-3xl w-full text-center font-bold text-primary-100">Loading...</h1> : (
-          Posts?.map((post, id) => <Post key={id} {...post} setPosts={setPosts} isLoading={isLoading} />)
+          Posts?.map((post, id) => <Post key={id} {...post} setPosts={setPosts} isLoading={LikeLoading} />)
         )}
       </div>
     </div>
