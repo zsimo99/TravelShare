@@ -24,7 +24,6 @@ const Home = () => {
       if (isError) console.log(message);
       if (isSuccess) setPosts(posts);
       if (isLoading) { setLoading(true) } else setLoading(false)
-      dispatch(reset())
     }
   }, [dispatch, isError, isSuccess, posts, message, isLoading])
 
