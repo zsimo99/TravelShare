@@ -73,12 +73,12 @@ export const postSlice = createSlice({
                 state.LikeLoading = true
             })
             .addCase(addOrRemoveLike.fulfilled, (state, actions) => {
-                state.LikeLoading = true
+                state.LikeLoading = false
                 state.isSuccess = true
                 state.posts = state.posts.map(obj => obj._id === actions.payload._id ? actions.payload : obj)
             })
             .addCase(addOrRemoveLike.rejected, (state, actions) => {
-                state.LikeLoading = true
+                state.LikeLoading = false
                 state.isError = true
                 state.message = actions.payload
             })
